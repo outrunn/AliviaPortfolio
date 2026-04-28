@@ -1,9 +1,28 @@
+"use client";
+
+import { AudioProvider } from "@/components/audio/AudioProvider";
+import { ParticleScene } from "@/components/three/ParticleScene";
+import { MiniPlayer } from "@/components/audio/MiniPlayer";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { MusicSection } from "@/components/sections/MusicSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { PressSection } from "@/components/sections/PressSection";
+import { CreditsSection } from "@/components/sections/CreditsSection";
+import { ContactSection } from "@/components/sections/ContactSection";
+
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-6xl font-bold text-[var(--color-pink)]">
-        ALIVIA CLARK
-      </h1>
-    </main>
+    <AudioProvider>
+      <ParticleScene />
+      <main className="relative z-10">
+        <HeroSection />
+        <MusicSection />
+        <AboutSection />
+        <PressSection />
+        <CreditsSection />
+        <ContactSection />
+      </main>
+      <MiniPlayer />
+    </AudioProvider>
   );
 }

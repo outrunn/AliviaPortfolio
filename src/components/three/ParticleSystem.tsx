@@ -137,25 +137,25 @@ export function ParticleSystem() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          array={positions}
+          args={[positions, 3]}
           count={PARTICLE_COUNT}
           itemSize={3}
         />
         <bufferAttribute
           attach="attributes-aColor"
-          array={colors}
+          args={[colors, 3]}
           count={PARTICLE_COUNT}
           itemSize={3}
         />
         <bufferAttribute
           attach="attributes-aSize"
-          array={sizes}
+          args={[sizes, 1]}
           count={PARTICLE_COUNT}
           itemSize={1}
         />
         <bufferAttribute
           attach="attributes-aPhase"
-          array={phases}
+          args={[phases, 1]}
           count={PARTICLE_COUNT}
           itemSize={1}
         />

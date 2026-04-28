@@ -3,7 +3,7 @@ export interface AudioData {
   mid: number;
   treble: number;
   volume: number;
-  frequencies: Uint8Array;
+  frequencies: Uint8Array<ArrayBuffer>;
 }
 
 const EMPTY_AUDIO: AudioData = {
@@ -20,7 +20,7 @@ export class AudioEngine {
   private source: AudioBufferSourceNode | null = null;
   private gainNode: GainNode | null = null;
   private buffer: AudioBuffer | null = null;
-  private frequencyData: Uint8Array = new Uint8Array(64);
+  private frequencyData: Uint8Array<ArrayBuffer> = new Uint8Array(64);
   private _isPlaying = false;
   private startOffset = 0;
   private startTime = 0;

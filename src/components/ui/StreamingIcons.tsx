@@ -2,15 +2,15 @@ import {
   SiSpotify,
   SiApplemusic,
   SiTidal,
-  SiAmazonmusic,
   SiSoundcloud,
 } from "react-icons/si";
+import { FaAmazon } from "react-icons/fa";
 
 const platforms = [
   { name: "Spotify", url: "https://open.spotify.com/artist/1NjDq6lw5KyAKoFYetyhae", icon: SiSpotify },
   { name: "Apple Music", url: "https://music.apple.com/us/artist/alivia-clark/1569520288", icon: SiApplemusic },
   { name: "Tidal", url: "https://tidal.com/artist/20961972", icon: SiTidal },
-  { name: "Amazon Music", url: "https://music.amazon.com/artists/B095XYHPZ3/alivia-clark", icon: SiAmazonmusic },
+  { name: "Amazon Music", url: "https://music.amazon.com/artists/B095XYHPZ3/alivia-clark", icon: FaAmazon },
   { name: "SoundCloud", url: "https://soundcloud.com/aliviaclark", icon: SiSoundcloud },
 ];
 
