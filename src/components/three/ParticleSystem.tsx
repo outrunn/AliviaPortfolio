@@ -52,7 +52,7 @@ export function ParticleSystem() {
       colors[i * 3 + 1] = initColors[ci].y;
       colors[i * 3 + 2] = initColors[ci].z;
 
-      sizes[i] = Math.random() * 3 + 1;
+      sizes[i] = Math.random() * 4 + 1.5;
       phases[i] = Math.random() * Math.PI * 2;
     }
 

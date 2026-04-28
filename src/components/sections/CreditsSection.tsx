@@ -47,7 +47,7 @@ export function CreditsSection() {
             <div className="space-y-5">
               {actingCredits.map((cat) => (
                 <div key={cat.category}>
-                  <p className="text-xs uppercase tracking-widest text-[var(--color-sage)] mb-2">{cat.category}</p>
+                  <p className="text-xs uppercase tracking-widest text-[var(--color-purple)] mb-2">{cat.category}</p>
                   <ul className="space-y-1.5">
                     {cat.items.map((item) => (
                       <li key={item.title} className="text-[var(--color-text-muted)]">{item.title}</li>

@@ -78,7 +78,13 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
 
       if (currentSong?.id !== songId) {
         engine.stop();
-        await engine.load(song.audioSrc);
+        try {
+          await engine.load(song.audioSrc);
+        } catch {
+          // Audio file not available — open Spotify instead
+          window.open(song.spotifyUrl, "_blank");
+          return;
+        }
         setCurrentSong(song);
       }
 

@@ -26,7 +26,7 @@ export const songs: Song[] = [
     coverArt: null,
     featured: true,
     theme: {
-      colors: ["#2D1B4E", "#D4A574", "#E8734A"],
+      colors: ["#FF6EC7", "#E040A0", "#F97316"],
       particleBehavior: "swirl",
       speed: 0.3,
       clusterBottom: true,
@@ -41,7 +41,7 @@ export const songs: Song[] = [
     coverArt: null,
     featured: false,
     theme: {
-      colors: ["#FF69B4", "#87CEEB", "#FFFFFF"],
+      colors: ["#FFC2ED", "#A78BFA", "#FFFFFF"],
       particleBehavior: "scatter",
       speed: 0.6,
       clusterBottom: false,
@@ -50,7 +50,7 @@ export const songs: Song[] = [
 ];
 
 export const defaultTheme: SongTheme = {
-  colors: ["#FFC2ED", "#7AA479", "#C0E8F9"],
+  colors: ["#FF6EC7", "#A78BFA", "#FFC2ED"],
   particleBehavior: "drift",
   speed: 0.15,
   clusterBottom: false,

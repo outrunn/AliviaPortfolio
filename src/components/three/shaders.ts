@@ -18,7 +18,7 @@ export const particleVertex = /* glsl */ `
     float pulse = 1.0 + uBass * 0.5 + sin(uTime * 2.0 + aPhase) * 0.1;
     float size = aSize * pulse;
 
-    vAlpha = 0.4 + uVolume * 0.6;
+    vAlpha = 0.7 + uVolume * 0.3;
 
     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
     gl_PointSize = size * (200.0 / -mvPosition.z);
@@ -35,7 +35,7 @@ export const particleFragment = /* glsl */ `
     if (dist > 0.5) discard;
 
     float glow = 1.0 - smoothstep(0.0, 0.5, dist);
-    glow = pow(glow, 1.5);
+    glow = pow(glow, 1.2);
 
     gl_FragColor = vec4(vColor, glow * vAlpha);
   }

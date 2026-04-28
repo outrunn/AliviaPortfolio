@@ -11,7 +11,7 @@ export function ContactSection() {
         <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl font-bold mb-4">Let&apos;s Work Together</h2>
         <p className="text-[var(--color-text-muted)] mb-8">For bookings, collaborations, sync licensing, and press inquiries.</p>
 
-        <a href="mailto:booking@aliviaclark.com" className="inline-block px-8 py-3 rounded-full bg-[var(--color-pink)] text-[var(--color-bg)] font-semibold hover:opacity-90 transition-opacity">
+        <a href="mailto:booking@aliviaclark.com" className="inline-block px-8 py-3 rounded-full bg-[var(--color-pink)] text-[var(--color-bg-top)] font-semibold hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(255,110,199,0.4)]">
           Get in Touch
         </a>
 
