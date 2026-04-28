@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useAudio } from "@/components/audio/AudioProvider";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
@@ -40,37 +41,50 @@ export function HeroSection() {
         Singer. Songwriter. Storyteller.
       </motion.p>
 
-      <motion.button
-        onClick={handlePlay}
-        className="mt-12 group relative flex items-center justify-center"
+      {/* Album art + play button */}
+      <motion.div
+        className="mt-12 flex items-center gap-6"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.8 }}
-        aria-label={isPlayingFeatured ? "Pause" : "Press Play"}
       >
-        <span className="absolute w-20 h-20 rounded-full bg-[var(--color-pink)] opacity-20 group-hover:opacity-40 transition-opacity animate-ping" />
-        <span className="relative w-20 h-20 rounded-full bg-[var(--color-pink)]/20 border border-[var(--color-pink)]/50 flex items-center justify-center backdrop-blur-sm group-hover:bg-[var(--color-pink)]/30 transition-all">
-          {isPlayingFeatured ? (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--color-pink)">
-              <rect x="6" y="4" width="4" height="16" rx="1" />
-              <rect x="14" y="4" width="4" height="16" rx="1" />
-            </svg>
-          ) : (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--color-pink)">
-              <polygon points="8,4 20,12 8,20" />
-            </svg>
-          )}
-        </span>
-      </motion.button>
+        <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(255,110,199,0.3)] ring-1 ring-white/10">
+          <Image
+            src="/images/breathless-cover.png"
+            alt="Breathless"
+            fill
+            className="object-cover"
+            sizes="96px"
+          />
+        </div>
 
-      <motion.span
-        className="mt-4 text-sm text-[var(--color-text-muted)]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-      >
-        {isPlayingFeatured ? "Now Playing: Breathless" : "Press Play"}
-      </motion.span>
+        <div className="flex flex-col items-start gap-2">
+          <button
+            onClick={handlePlay}
+            className="group relative flex items-center gap-3"
+            aria-label={isPlayingFeatured ? "Pause" : "Press Play"}
+          >
+            <span className="relative w-14 h-14 rounded-full bg-[var(--color-pink)]/20 border border-[var(--color-pink)]/50 flex items-center justify-center backdrop-blur-sm group-hover:bg-[var(--color-pink)]/30 transition-all shadow-[0_0_20px_rgba(255,110,199,0.2)]">
+              {isPlayingFeatured ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--color-pink)">
+                  <rect x="6" y="4" width="4" height="16" rx="1" />
+                  <rect x="14" y="4" width="4" height="16" rx="1" />
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--color-pink)">
+                  <polygon points="9,4 20,12 9,20" />
+                </svg>
+              )}
+            </span>
+            <span className="text-left">
+              <span className="block text-sm font-semibold">
+                {isPlayingFeatured ? "Now Playing" : "Play"}
+              </span>
+              <span className="block text-xs text-[var(--color-text-muted)]">Breathless</span>
+            </span>
+          </button>
+        </div>
+      </motion.div>
 
       <ScrollIndicator />
     </section>

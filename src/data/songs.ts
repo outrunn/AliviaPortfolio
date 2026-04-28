@@ -23,7 +23,7 @@ export const songs: Song[] = [
     artist: "Alivia Clark",
     audioSrc: "/audio/breathless.mp3",
     spotifyUrl: "https://open.spotify.com/album/5aGv38bHeqXzIKkxhNjTWA",
-    coverArt: null,
+    coverArt: "/images/breathless-cover.png",
     featured: true,
     theme: {
       colors: ["#FF6EC7", "#E040A0", "#F97316"],

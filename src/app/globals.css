@@ -18,26 +18,18 @@ html {
 }
 
 body {
-  background: linear-gradient(
-    180deg,
-    var(--color-bg-top) 0%,
-    var(--color-bg-mid) 30%,
-    var(--color-bg-bottom) 60%,
-    #3D1A5C 80%,
-    #5C2D6E 100%
-  );
-  background-attachment: fixed;
+  background: var(--color-bg-top);
   color: var(--color-text);
   overflow-x: hidden;
 }
 
 .glass-card {
-  background: rgba(140, 60, 180, 0.12);
+  background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 110, 199, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 1.5rem;
-  box-shadow: 0 0 30px rgba(255, 110, 199, 0.06), 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
 }
 
 .neon-glow {
