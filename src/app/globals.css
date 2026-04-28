@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+:root {
+  --color-pink: #FFC2ED;
+  --color-sage: #7AA479;
+  --color-blue: #C0E8F9;
+  --color-bg: #0A0A0F;
+  --color-text: #F5F5F5;
+  --color-text-muted: #A0A0B0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+}
