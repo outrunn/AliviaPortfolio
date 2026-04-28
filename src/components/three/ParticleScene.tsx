@@ -1,60 +1,89 @@
 "use client";
 
+import { useRef } from "react";
+import { Canvas } from "@react-three/fiber";
 import { useAudio } from "@/components/audio/AudioProvider";
+import { FloatingOrbs } from "./FloatingOrbs";
+
+// Lerp between two RGB values
+function lerpRgb(
+  a: [number, number, number],
+  b: [number, number, number],
+  t: number
+): [number, number, number] {
+  return [
+    Math.round(a[0] + (b[0] - a[0]) * t),
+    Math.round(a[1] + (b[1] - a[1]) * t),
+    Math.round(a[2] + (b[2] - a[2]) * t),
+  ];
+}
+
+// Default purple gradient stops
+const PURPLE_STOPS: [number, number, number][] = [
+  [42, 16, 64],     // deep purple
+  [74, 26, 107],    // dark purple
+  [123, 63, 142],   // medium purple
+  [199, 107, 174],  // light purple-pink
+  [240, 160, 200],  // soft pink
+  [255, 194, 237],  // light pink
+  [255, 214, 240],  // very light pink
+];
+
+// Sunset gradient stops (warm yellow/orange)
+const SUNSET_STOPS: [number, number, number][] = [
+  [45, 20, 80],     // deep indigo (keep dark at top)
+  [90, 30, 100],    // purple-indigo
+  [160, 60, 90],    // warm mauve
+  [220, 120, 70],   // burnt orange
+  [245, 170, 60],   // golden orange
+  [255, 200, 80],   // warm yellow
+  [255, 230, 140],  // light golden
+];
 
 export function ParticleScene() {
   const { isPlaying, audioData } = useAudio();
+  const mixRef = useRef(0);
 
-  // Audio-reactive values
-  const bass = isPlaying ? audioData.bass : 0;
-  const mid = isPlaying ? audioData.mid : 0;
-  const volume = isPlaying ? audioData.volume : 0;
+  // Smoothly interpolate mix factor toward target
+  const targetMix = isPlaying ? Math.min(audioData.volume * 2.5, 1) : 0;
+  mixRef.current += (targetMix - mixRef.current) * 0.05;
+  const mix = mixRef.current;
 
-  // Shift gradient based on audio — more bass = warmer/pinker, more volume = brighter
-  const pinkIntensity = Math.round(194 + bass * 60);
-  const purpleShift = Math.round(26 + mid * 40);
-  const brighten = Math.round(volume * 20);
+  // Interpolate each gradient stop between purple and sunset
+  const stops = PURPLE_STOPS.map((purpleStop, i) =>
+    lerpRgb(purpleStop, SUNSET_STOPS[i], mix)
+  );
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      {/* Clean pink/purple gradient — reacts to audio */}
+      {/* Gradient that shifts from purple to sunset while music plays */}
       <div
-        className="absolute inset-0 transition-[background] duration-150"
+        className="absolute inset-0"
         style={{
           background: `linear-gradient(
             160deg,
-            rgb(${42 + brighten}, ${16 + purpleShift}, ${64 + brighten}) 0%,
-            rgb(${74 + brighten}, ${purpleShift}, ${107 + brighten}) 20%,
-            rgb(${123 + brighten}, ${63 + brighten}, ${142 + brighten}) 40%,
-            rgb(${199 + brighten}, ${107 + brighten}, ${174 + brighten}) 60%,
-            rgb(${240 + Math.min(brighten, 15)}, ${160 + brighten}, ${200 + brighten}) 78%,
-            rgb(255, ${pinkIntensity}, ${237 + Math.min(brighten, 18)}) 90%,
-            rgb(255, ${214 + Math.min(brighten, 40)}, ${240 + Math.min(brighten, 15)}) 100%
+            rgb(${stops[0].join(",")}) 0%,
+            rgb(${stops[1].join(",")}) 17%,
+            rgb(${stops[2].join(",")}) 34%,
+            rgb(${stops[3].join(",")}) 50%,
+            rgb(${stops[4].join(",")}) 66%,
+            rgb(${stops[5].join(",")}) 83%,
+            rgb(${stops[6].join(",")}) 100%
           )`,
         }}
       />
 
-      {/* Pulsing glow spot — reacts to bass */}
-      <div
-        className="absolute rounded-full transition-all duration-150"
-        style={{
-          width: `${50 + bass * 20}vw`,
-          height: `${50 + bass * 20}vw`,
-          top: "15%",
-          right: "-5%",
-          background: `radial-gradient(circle, rgba(255,${pinkIntensity},237,${0.12 + volume * 0.15}) 0%, transparent 60%)`,
-        }}
-      />
-      <div
-        className="absolute rounded-full transition-all duration-150"
-        style={{
-          width: `${40 + mid * 15}vw`,
-          height: `${40 + mid * 15}vw`,
-          bottom: "5%",
-          left: "-5%",
-          background: `radial-gradient(circle, rgba(139,92,246,${0.1 + volume * 0.12}) 0%, transparent 60%)`,
-        }}
-      />
+      {/* Three.js floating orbs layer */}
+      <div className="absolute inset-0">
+        <Canvas
+          camera={{ position: [0, 0, 12], fov: 50 }}
+          dpr={[1, 1.5]}
+          gl={{ antialias: true, alpha: true }}
+          style={{ background: "transparent" }}
+        >
+          <FloatingOrbs />
+        </Canvas>
+      </div>
     </div>
   );
 }

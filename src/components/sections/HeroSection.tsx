@@ -4,6 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useAudio } from "@/components/audio/AudioProvider";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
+import { StreamingIcons } from "@/components/ui/StreamingIcons";
+import { SocialIcons } from "@/components/ui/SocialIcons";
 import { songs } from "@/data/songs";
 
 export function HeroSection() {
@@ -43,7 +45,7 @@ export function HeroSection() {
 
       {/* Album art + play button */}
       <motion.div
-        className="mt-12 flex items-center gap-6"
+        className="mt-10 flex items-center gap-5"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.8 }}
@@ -80,10 +82,21 @@ export function HeroSection() {
               <span className="block text-sm font-semibold">
                 {isPlayingFeatured ? "Now Playing" : "Play"}
               </span>
-              <span className="block text-xs text-[var(--color-text-muted)]">Breathless</span>
+              <span className="block text-xs text-[var(--color-text-muted)]">Breathless — New Single</span>
             </span>
           </button>
         </div>
+      </motion.div>
+
+      {/* Prominent links */}
+      <motion.div
+        className="mt-10 flex flex-col items-center gap-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
+      >
+        <StreamingIcons className="justify-center" />
+        <SocialIcons className="justify-center" />
       </motion.div>
 
       <ScrollIndicator />
